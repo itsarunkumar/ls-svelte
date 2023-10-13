@@ -27,7 +27,10 @@ export const load = (async ({ locals }) => {
 
 	const links = await prisma.link.findMany({
 		where: {
-			userId: session?.user.userId
+			userId: session?.user.userId,
+			AND: {
+				pageId: null
+			}
 		}
 	});
 

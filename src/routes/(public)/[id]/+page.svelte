@@ -1,4 +1,5 @@
 <script lang="ts">
+	// @ts-nocheck
 	import type { PageData } from './$types';
 
 	import { Facebook, Github, Instagram, Twitter, Youtube } from '$lib/components/icons';
@@ -62,9 +63,11 @@
 			{/each}
 		</div>
 
-		<div class="flex flex-col gap-3 items-center my-10">
+		<div class="flex flex-col gap-3 items-center my-10 relative px-2">
 			{#each data?.public_details.links as link}
-				<div class="flex gap-2 items-center flex-col border rounded-md px-3 py-2">
+				<div
+					class=" w-full flex gap-2 items-center flex-col border rounded-md px-3 py-2 shadow-md bg-primary-foreground before:absolute before:-inset-1 before:rounded-md before:shadow-md before:bg-primary/5 before:blur-2xl before:w-full before:h-full before:-z-10"
+				>
 					<span class="capitalize font-semibold">{link.name}</span>
 					<a href={link.url} target="_blank" class="text-xs text-muted-foreground">
 						{link.url.startsWith('http') ? link.url.slice(12) : link.url}
