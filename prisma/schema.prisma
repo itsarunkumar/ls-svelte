@@ -18,9 +18,12 @@ model User {
 
   social_links SocialLink[]
   links        Link[]
+  pages        Page[]
 
   auth_session Session[]
   key          Key[]
+
+  createdAt DateTime @default(now())
 }
 
 model Session {
@@ -43,18 +46,33 @@ model Key {
 }
 
 model SocialLink {
-  id       String  @unique @default(uuid())
-  name     String  @unique
-  username String
-  url      String
-  User     User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId   String?
+  id        String   @unique @default(uuid())
+  name      String   @unique
+  username  String
+  url       String
+  User      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?
+  createdAt DateTime @default(now())
 }
 
 model Link {
-  id     String  @unique @default(uuid())
-  name   String
-  url    String
-  User   User?   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String?
+  id        String   @unique @default(uuid())
+  name      String
+  url       String
+  User      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?
+  Page      Page?    @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  pageId    String?
+  createdAt DateTime @default(now())
+}
+
+model Page {
+  id        String   @unique @default(uuid())
+  name      String
+  links     Link[]
+  User      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String?
+  createdAt DateTime @default(now())
+
+  @@unique([name, userId])
 }
