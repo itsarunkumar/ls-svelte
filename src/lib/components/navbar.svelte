@@ -1,0 +1,136 @@
+<script>
+	import { cn } from '$lib/utils/cn';
+	import { clickOutside } from '$lib/utils/click-outside';
+	import { fly, scale, slide } from 'svelte/transition';
+	import { quintOut } from 'svelte/easing';
+	import { Goal, Menu, PersonStanding, User, UserCircle, X } from 'lucide-svelte';
+	import { page } from '$app/stores';
+	import DarkMode from './dark-mode.svelte';
+	import Modal from './modal.svelte';
+	import { enhance } from '$app/forms';
+	import Google from './icons/google.svelte';
+	import Github from './icons/github.svelte';
+
+	let view = true;
+	let showModal = false;
+
+	function showNav() {
+		view = !view;
+	}
+</script>
+
+{#if showModal}
+	<Modal
+		bind:showModal
+		class="bg-primary-foreground text-primary flex flex-col items-center justify-center "
+	>
+		{#if $page.data.user && $page.data.loggedIn}
+			<div class="w-full h-full flex flex-col items-center justify-center gap-3">
+				<img
+					class="w-20 h-20 rounded-full object-cover object-center"
+					src="https://images.unsplash.com/photo-1693683198447-a0dd6c2bfbda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
+					alt=""
+				/>
+
+				<h1>{$page.data.user.username}</h1>
+				<span>{$page.data.user.email}</span>
+
+				<form
+					method="post"
+					action="/logout"
+					use:enhance={() => {
+						return async ({ update }) => {
+							await update();
+							showModal = false;
+						};
+					}}
+					class=" px-5 py-2 rounded-sm border shadow-sm"
+				>
+					<input type="submit" value="Sign out" class="cursor-pointer" />
+				</form>
+			</div>
+		{:else if !$page.data.loggedIn}
+			<div transition:slide class="flex flex-col items-center justify-around gap-5">
+				<h1 class="text-2xl">Login or Sign up</h1>
+				<span>...with:</span>
+				<div class="flex gap-5 items-center">
+					<a href="/login/github" class="flex gap-2 items-center">
+						<Github class="w-5 h-5" /> Github
+					</a>
+
+					<a href="/login/google" class="flex gap-2 items-center">
+						<Google class="w-5 h-5" /> Google
+					</a>
+				</div>
+			</div>
+		{/if}
+	</Modal>
+{/if}
+
+<nav
+	on:outside={() => (view = true)}
+	use:clickOutside
+	class={cn(
+		`w-full min-h-[50px]  relative capitalize flex justify-between items-center px-5 py-2  z-10 transition-all duration-300 ease-in-out ${$$props.class}`
+	)}
+>
+	<div class={cn(`flex items-center `)}>
+		<a href="/" class="text-lg font-semibold">Linkspot</a>
+	</div>
+
+	<div class={cn('flex items-center gap-5 max-sm:hidden')}>
+		{#if $page.data.user && $page.data.loggedIn}
+			<a href="/pages">Pages</a>
+			<a href="/dashboard">dashboard</a>
+			<button on:click={() => (showModal = true)} class=" rounded-full flex gap-2 items-center">
+				<User class="w-4 h-4" /> Profile
+			</button>
+		{:else}
+			<button on:click={() => (showModal = true)} class=" rounded-full flex gap-2 items-center">
+				<UserCircle class="w-4 h-4" /> Login
+			</button>
+		{/if}
+		<DarkMode />
+	</div>
+
+	<!-- small devices burger nav options -->
+	<div
+		on:outside={() => (view = true)}
+		use:clickOutside
+		class="items-center justify-center flex-col hidden max-sm:flex transition-opacity duration-300 ease-in-out relative"
+	>
+		<button class="px-5 py-2 hidden max-sm:block" on:click={showNav}>
+			{#if view}
+				<Menu />
+			{:else}
+				<X />
+			{/if}
+		</button>
+
+		{#if !view}
+			<div
+				transition:slide={{ duration: 500, easing: quintOut }}
+				class={cn(
+					' absolute px-5 py-2 rounded-md shadow-2xl  top-10 right-0 flex flex-col items-center gap-2 transition-all duration-300 ease-in-out z-10 bg-primary-foreground border'
+				)}
+			>
+				{#if $page.data.user && $page.data.loggedIn}
+					<a href="/pages">Pages</a>
+					<a href="/dashboard">dashboard</a>
+					<button on:click={() => (showModal = true)} class=" rounded-full flex gap-2 items-center">
+						<User class="w-4 h-4" /> Profile
+					</button>
+				{:else}
+					<a href="/login">Login</a>
+				{/if}
+				<DarkMode />
+			</div>
+		{/if}
+	</div>
+</nav>
+
+<style>
+	.view {
+		@apply hidden opacity-0;
+	}
+</style>
