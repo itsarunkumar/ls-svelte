@@ -20,6 +20,10 @@
 	const username_res = writable(null);
 </script>
 
+<svelte:head>
+	<script src="https://unpkg.com/@bitjson/qr-code@1.0.2/dist/qr-code.js"></script>
+</svelte:head>
+
 <Navbar />
 
 {#if showModal}
@@ -70,13 +74,6 @@
 <Toast />
 
 <style>
-	:global(body) {
-		/* background: rgb(2, 0, 36);
-		background: radial-gradient(
-			circle,
-			rgba(2, 0, 36, 0) 0%,
-			rgba(0, 212, 255, 0.3982843137254902) 47%,
-			rgba(9, 9, 229, 0.05934873949579833) 81%
-		); */
+	:global(html) {
 	}
 </style>

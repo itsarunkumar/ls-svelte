@@ -12,7 +12,7 @@
 <div
 	in:slide={{ duration: 500, easing: quintOut }}
 	out:scale={{ duration: 500 }}
-	class=" w-[30rem] flex flex-col items-center justify-center gap-3 px-2 py-4 rounded-md border shadow-md"
+	class=" w-full flex flex-col items-center justify-center gap-3 px-2 py-4 rounded-md border shadow-md"
 >
 	<div class="flex flex-col items-center">
 		<h1 class="text-lg font-semibold capitalize">{name}</h1>

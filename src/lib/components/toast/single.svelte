@@ -39,7 +39,7 @@
 <div
 	in:fly={{ x: 20, duration: 500 }}
 	out:fly={{ x: -20, duration: 500 }}
-	class="relative flex w-72 px-1 py-2 overflow-hidden capitalize bg-primary-foreground border border-slate-300 border-opacity-30 rounded-md shadow-xl"
+	class="relative flex w-72 px-1 py-2 overflow-hidden bg-primary-foreground border border-slate-300 border-opacity-30 rounded-md shadow-xl"
 >
 	<span class="absolute -top-2 -left-3">
 		<Dot
@@ -56,7 +56,7 @@
 	</span>
 	<div class="mx-3 relative w-full">
 		<div class="flex flex-col gap-1 items-start py-2">
-			<span class="font-semibold">{toast.title}</span>
+			<span class="font-semibold capitalize">{toast.title}</span>
 			<p class="text-sm text-muted-foreground">{toast.content}</p>
 		</div>
 

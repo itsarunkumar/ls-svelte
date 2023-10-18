@@ -37,6 +37,12 @@ dependencies:
     version: 1.14.0
 
 devDependencies:
+  '@svelte-put/copy':
+    specifier: ^3.0.0
+    version: 3.0.0
+  '@svelte-put/qr':
+    specifier: ^1.0.0
+    version: 1.0.0
   '@sveltejs/adapter-auto':
     specifier: ^2.1.0
     version: 2.1.0(@sveltejs/kit@1.25.2)
@@ -536,6 +542,16 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
       rollup: 3.29.4
+    dev: true
+
+  /@svelte-put/copy@3.0.0:
+    resolution: {integrity: sha512-zfQ68bTC1Mmfairu0fN5y5NPkXV7XUjuPsP+Ntqb8TD6xTa8czBLvgsFxUzOT8hcxfHyXJ8acIhK9V4xgpE94w==}
+    dev: true
+
+  /@svelte-put/qr@1.0.0:
+    resolution: {integrity: sha512-2gejs86CcOu8uraF36MF1Pmv8tAHHRaHuyl3Hy3a0tnmCZFGKkyz5QXCA++gPGJxFGVtaTjQadEOmamUnUx8tQ==}
+    dependencies:
+      qrcode-generator: 1.4.4
     dev: true
 
   /@sveltejs/adapter-auto@2.1.0(@sveltejs/kit@1.25.2):
@@ -2062,6 +2078,10 @@ packages:
   /punycode@2.3.0:
     resolution: {integrity: sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==}
     engines: {node: '>=6'}
+    dev: true
+
+  /qrcode-generator@1.4.4:
+    resolution: {integrity: sha512-HM7yY8O2ilqhmULxGMpcHSF1EhJJ9yBj8gvDEuZ6M+KGJ0YY2hKpnXvRD+hZPLrDVck3ExIGhmPtSdcjC+guuw==}
     dev: true
 
   /queue-microtask@1.2.3:
