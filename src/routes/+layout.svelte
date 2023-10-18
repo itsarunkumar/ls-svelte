@@ -18,8 +18,6 @@
 	}
 
 	const username_res = writable(null);
-
-	console.log(data);
 </script>
 
 <Navbar />
@@ -56,8 +54,7 @@
 				placeholder="create a username"
 			/>
 
-			<button
-				class="border px-5 py-2 rounded-sm dark:bg-primary-foreground dark:text-primary capitalize"
+			<button class="border px-5 py-2 rounded-sm bg-primary text-primary-foreground capitalize"
 				>submit</button
 			>
 		</form>

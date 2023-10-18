@@ -44,9 +44,10 @@
 							showModal = false;
 						};
 					}}
-					class=" px-5 py-2 rounded-sm border shadow-sm"
 				>
-					<input type="submit" value="Sign out" class="cursor-pointer" />
+					<button class="capitalize px-5 py-2 rounded-md bg-primary text-primary-foreground shadow"
+						>Logout</button
+					>
 				</form>
 			</div>
 		{:else if !$page.data.loggedIn}
@@ -75,7 +76,7 @@
 	)}
 >
 	<div class={cn(`flex items-center `)}>
-		<a href="/" class="text-lg font-semibold">Linkspot</a>
+		<a href="/" class="text-xl font-semibold">Linkspot</a>
 	</div>
 
 	<div class={cn('flex items-center gap-5 max-sm:hidden')}>
@@ -90,7 +91,6 @@
 				<UserCircle class="w-4 h-4" /> Login
 			</button>
 		{/if}
-		<DarkMode />
 	</div>
 
 	<!-- small devices burger nav options -->
@@ -123,14 +123,10 @@
 				{:else}
 					<a href="/login">Login</a>
 				{/if}
-				<DarkMode />
 			</div>
 		{/if}
 	</div>
 </nav>
 
 <style>
-	.view {
-		@apply hidden opacity-0;
-	}
 </style>

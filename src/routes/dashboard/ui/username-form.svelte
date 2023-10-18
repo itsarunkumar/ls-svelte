@@ -27,6 +27,7 @@
 					});
 				}
 				if (result.type === 'error') {
+					await update();
 					addToast({
 						title: 'Failure',
 						content: 'Username already exists',
@@ -45,8 +46,7 @@
 			id="username"
 			placeholder="username"
 		/>
-		<button
-			class="border px-5 py-2 rounded-sm dark:bg-primary-foreground dark:text-primary capitalize"
+		<button class="border px-5 py-2 rounded-md bg-primary text-primary-foreground capitalize"
 			>save</button
 		>
 	</form>

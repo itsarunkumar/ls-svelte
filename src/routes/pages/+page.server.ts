@@ -1,8 +1,10 @@
 import { prisma } from '$lib/server/prisma';
+import type { Page } from '@prisma/client';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load = (async ({ locals }) => {
+export const load = (async ({ locals, url }) => {
 	const session = await locals.auth.validate();
+	const pageid = url.searchParams.get('pageid');
 
 	if (!session) {
 		return {
@@ -10,14 +12,28 @@ export const load = (async ({ locals }) => {
 		};
 	}
 
-	const pages = await prisma.page.findMany({
+	const pages: Page[] = await prisma.page.findMany({
 		where: {
 			userId: session?.user.userId as string
 		}
 	});
 
+	let singlePage;
+
+	if (pageid) {
+		singlePage = await prisma.page.findUnique({
+			where: {
+				id: pageid as string
+			},
+			include: {
+				links: true
+			}
+		});
+	}
+
 	return {
-		pages
+		pages,
+		singlePage: singlePage ? singlePage : null
 	};
 }) satisfies PageServerLoad;
 
@@ -26,7 +42,23 @@ export const actions: Actions = {
 		const formData = await request.formData();
 		const session = await locals.auth.validate();
 		const user_id = session?.user.userId;
-		const name = formData.get('page_name');
+		const name = formData.get('page_name')?.toString().toLowerCase();
+
+		const existsPage = await prisma.page.findUnique({
+			where: {
+				name_userId: {
+					name: name as string,
+					userId: user_id as string
+				}
+			}
+		});
+
+		if (existsPage) {
+			return {
+				msg: 'page already exists',
+				created: false
+			};
+		}
 
 		const new_page = await prisma.page.create({
 			data: {
@@ -61,52 +93,6 @@ export const actions: Actions = {
 		return {
 			msg: 'deleted',
 			deleted_page: delete_page
-		};
-	},
-	addLinkPage: async ({ request, locals }) => {
-		const formData = await request.formData();
-		const session = await locals.auth.validate();
-		const page_id = formData.get('page_id');
-		const link_name = formData.get('link_name');
-		const link_url = formData.get('link_url');
-
-		const new_link = await prisma.link.create({
-			data: {
-				name: link_name as string,
-				url: link_url as string,
-				pageId: page_id as string,
-				userId: session?.user.userId as string
-			}
-		});
-
-		if (!new_link) {
-			throw Error('failed to create link');
-		}
-
-		return {
-			msg: 'success',
-			page_link: new_link
-		};
-	},
-	deleteLinkPage: async ({ request }) => {
-		const formData = await request.formData();
-		const link_id = formData.get('link_id');
-		const page_id = formData.get('page_id');
-
-		const delete_link = await prisma.link.delete({
-			where: {
-				id: link_id as string,
-				pageId: page_id as string
-			}
-		});
-
-		if (!delete_link) {
-			throw Error('failed to delete link');
-		}
-
-		return {
-			msg: 'deleted',
-			deleted_link: delete_link
 		};
 	}
 };
