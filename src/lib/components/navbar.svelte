@@ -72,7 +72,7 @@
 	on:outside={() => (view = true)}
 	use:clickOutside
 	class={cn(
-		`w-full min-h-[50px]  relative capitalize flex justify-between items-center px-5 py-2  z-10 transition-all duration-300 ease-in-out ${$$props.class}`
+		`w-full min-h-[50px]  relative capitalize flex justify-around items-center px-5 py-2  z-10 transition-all duration-300 ease-in-out ${$$props.class}`
 	)}
 >
 	<div class={cn(`flex items-center `)}>

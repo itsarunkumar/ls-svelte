@@ -43,7 +43,7 @@
 					class=" w-[300px] flex justify-between items-center gap-2 border shadow-md px-5 py-2 rounded-md"
 				>
 					<div class="flex flex-col items-center gap-1">
-						<span class="">{link.name}</span>
+						<span class=" capitalize">{link.name}</span>
 						<a
 							href={link.url}
 							target="_blank"

@@ -57,7 +57,7 @@
 		@apply border-border font-lato;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-gradient-to-br from-violet-300/10  to-slate-200/50 bg-fixed bg-no-repeat bg-background text-foreground;
 		font-feature-settings: 'rlig' 1, 'calt' 1;
 	}
 }

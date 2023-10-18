@@ -40,6 +40,6 @@
 		</div>
 
 		<p class="mt-6 text-sm text-gray-500 lg:mt-0 dark:text-gray-400">© Copyright 2023</p>
-		<DarkMode />
+		<!-- <DarkMode /> -->
 	</div>
 </footer>

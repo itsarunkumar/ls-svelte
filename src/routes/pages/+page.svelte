@@ -1,16 +1,18 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { addToast } from '$lib/components/toast/toast';
-	import { Edit, Trash } from 'lucide-svelte';
+	import { Copy, Edit, Share, Share2, Trash } from 'lucide-svelte';
 	import type { PageData } from './$types';
 	import { fly, scale } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
 	import { page } from '$app/stores';
 	import { formatDistanceToNow } from 'date-fns';
+	import { copy } from '$lib/utils/copy';
+	import Modal from '$lib/components/modal.svelte';
+	import { onMount } from 'svelte';
+	import { qr } from '@svelte-put/qr/svg';
 
 	export let data: PageData;
-
-	const pageid = $page.url.searchParams.get('pageid');
 
 	interface modal {
 		[page_id: string]: boolean;
@@ -18,8 +20,17 @@
 
 	let showModal: modal = {};
 
-	function habdleModal(page_id: string) {
-		showModal[page_id] = true;
+	$: share_url = '';
+	onMount(() => {
+		share_url = `${location.origin}/${data.user?.username}/`;
+	});
+
+	function handlecopy(e: CustomEvent) {
+		addToast({
+			title: 'Copied',
+			content: e.detail.copiedText,
+			type: 'success'
+		});
 	}
 </script>
 
@@ -73,9 +84,47 @@
 					class="min-w-[300px] flex flex-col justify-center gap-2 border rounded-md px-3 py-2"
 				>
 					<div class="flex items-center justify-between">
-						<p class="text-lg font-semibold capitalize">{page.name}</p>
+						<a href="/pages/{page.id}" class="text-lg font-semibold capitalize">{page.name}</a>
 
-						<a href="/pages/{page.id}" class="text-blue-500">open</a>
+						<div class="flex gap-2 items-center justify-center">
+							<!-- <a href="/pages/{page.id}" class="text-blue-500">open</a> -->
+
+							<button
+								on:click={() => (showModal[page.id] = !showModal[page.id])}
+								class="flex gap-2 items-center"
+							>
+								<Share2 class="w-3 h-3" /> share</button
+							>
+
+							<Modal bind:showModal={showModal[page.id]} {page} class=" bg-primary-foreground">
+								<div class="w-full h-full flex flex-col gap-5 justify-center items-center">
+									<div class="flex flex-col items-center gap-2 capitalize font-semibold">
+										<span>Scan the QR</span>
+										<svg
+											use:qr={{
+												data: `${location.origin}/${data.user?.username}/${page.name}`,
+												logo: 'https://rstr.in/ee3j70q5p5zq4a/my-library/YTts-y0OiOm',
+												shape: 'circle'
+											}}
+											class="w-40 h-40 p-3 bg-slate-50 text-slate-950 rounded-md"
+										/>
+									</div>
+									<div class="text-primary flex flex-col gap-2 items-center">
+										<span class="font-semibold capitalize">share the link</span>
+										<p class="text-muted-foreground p-1 bg-muted rounded-md">
+											{share_url + page.name}
+										</p>
+										<button
+											use:copy={{ text: `${location.origin}/${data.user?.username}/${page.name}` }}
+											on:copied={handlecopy}
+											class="flex gap-2 items-center"
+										>
+											copy <Copy class="w-3 h-3" />
+										</button>
+									</div>
+								</div>
+							</Modal>
+						</div>
 
 						<form
 							action="?/deletePage"

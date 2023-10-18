@@ -11,7 +11,7 @@
 	</div>
 
 	<p
-		class="w-full text-justify px-10 first-letter:capitalize text-clip text-transparent bg-gradient-to-br from-violet-600 to-slate-900 bg-clip-text"
+		class="max-sm:w-full w-1/2 text-xl font-nunito text-center px-10 first-letter:capitalize text-clip text-transparent bg-gradient-to-br from-violet-600 to-slate-900 bg-clip-text"
 	>
 		linkspot is an app where you can share your links under different topics as pages. You can use
 		it as link in bio tool as well. Its an open source app free for individuals
