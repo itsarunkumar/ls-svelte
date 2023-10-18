@@ -46,8 +46,7 @@
 		{/each}
 	{/if}
 
-	<button
-		class="border px-5 py-2 rounded-sm dark:bg-primary-foreground dark:text-primary capitalize"
+	<button class="border px-5 py-2 rounded-md bg-primary text-primary-foreground capitalize"
 		>save</button
 	>
 </form>
