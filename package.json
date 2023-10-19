@@ -43,12 +43,15 @@
 		"@lucia-auth/adapter-prisma": "^3.0.2",
 		"@lucia-auth/oauth": "^3.3.1",
 		"@prisma/client": "^5.4.2",
+		"@types/node": "^20.8.7",
 		"axios": "^1.5.1",
+		"cloudinary": "^1.41.0",
 		"clsx": "^2.0.0",
 		"date-fns": "^2.30.0",
 		"lucia": "^2.7.1",
 		"lucide-svelte": "^0.284.0",
 		"node-fetch": "^3.3.2",
+		"svelte-cloudinary": "^1.1.1",
 		"tailwind-merge": "^1.14.0"
 	}
 }

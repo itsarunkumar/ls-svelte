@@ -33,7 +33,7 @@
 <div class="w-full min-h-screen flex flex-col justify-center items-center">
 	<div class="flex flex-col items-center gap-8">
 		<img
-			src="https://images.unsplash.com/photo-1696590358767-4615ebd16cb2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+			src={data.public_details?.profile_pic}
 			alt={data.public_details?.username}
 			class="w-24 h-24 rounded-full object-cover object-center shadow-md"
 		/>

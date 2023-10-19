@@ -6,6 +6,10 @@
 	export let data: PageData;
 </script>
 
+<svelte:head>
+	<title>Login</title>
+</svelte:head>
+
 <!-- routes/login/+page.svelte -->
 <!-- <h1>Sign in</h1>
 <a href="/login/github">Sign in with GitHub</a>

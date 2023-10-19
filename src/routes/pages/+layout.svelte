@@ -4,4 +4,8 @@
 	export let data: LayoutData;
 </script>
 
+<svelte:head>
+	<title>Pages</title>
+</svelte:head>
+
 <slot />
