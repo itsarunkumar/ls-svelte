@@ -1,6 +1,7 @@
 import type { Actions, PageServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
 import type { User } from '@prisma/client';
+import { v2 as cloudinary } from 'cloudinary';
 
 interface UserWithSocialLinks extends User {
 	social_links: {
@@ -150,6 +151,52 @@ export const actions: Actions = {
 		return {
 			msg: 'success'
 		};
+	},
+	upload: async ({ request, locals }) => {
+		const data = await request.formData();
+		const session = await locals.auth.validate();
+		const file = data.get('image') as File;
+
+		const af = await file.arrayBuffer();
+		const b = Buffer.from(af);
+
+		return new Promise((resolve, reject) => {
+			cloudinary.uploader
+				.upload_stream(
+					{
+						resource_type: 'image',
+						invalidate: true,
+						overwrite: true,
+						filename_override: `${session?.user.id}${session?.user.email}`,
+						allowed_formats: ['jpg', 'png', 'gif'],
+						folder: 'ls',
+						use_filename: true,
+						access_mode: 'public',
+						use_asset_folder_as_public_id_prefix: false,
+						unique_filename: false
+					},
+					onDone
+				)
+				.end(b);
+
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+			async function onDone(error: any, result: any) {
+				if (error) {
+					return reject({ success: false, error });
+				}
+
+				await prisma.user.update({
+					where: {
+						id: session?.user.id as string
+					},
+					data: {
+						profile_pic: result.secure_url
+					}
+				});
+
+				return resolve({ success: true, result });
+			}
+		});
 	}
 };
 

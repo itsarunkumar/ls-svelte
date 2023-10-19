@@ -14,7 +14,7 @@
 
 <div
 	use:usePortal
-	class="fixed max-w-max max-h-max bottom-2 max-sm:top-2 right-2 flex flex-col items-end gap-5 z-50"
+	class="fixed max-w-max max-h-max bottom-2 max-sm:top-2 right-2 flex flex-col items-end gap-5 z-[9999]"
 >
 	{#each $toasts as toast (toast.id)}
 		<Single {toast} />

@@ -28,8 +28,8 @@
 			<div class="w-full h-full flex flex-col items-center justify-center gap-3">
 				<img
 					class="w-20 h-20 rounded-full object-cover object-center"
-					src="https://images.unsplash.com/photo-1693683198447-a0dd6c2bfbda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80"
 					alt=""
+					src={$page.data.user.profile_pic}
 				/>
 
 				<h1>{$page.data.user.username}</h1>

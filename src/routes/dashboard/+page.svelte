@@ -15,6 +15,8 @@
 
 	$: links = data.links;
 
+	$: uploading = false;
+
 	let edit: boolean = false;
 
 	const icons = [
@@ -94,10 +96,38 @@
 				<div class=" rounded-full border-2 shadow-sm">
 					<img
 						class="w-24 h-24 rounded-full object-cover object-center"
-						src="https://images.unsplash.com/photo-1696590358767-4615ebd16cb2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+						src={data.user?.profile_pic}
 						alt="{data.user?.username}'s profile picture"
 					/>
 				</div>
+
+				{#if uploading}
+					<span class="text-sm text-gray-600">Uploading...</span>
+				{/if}
+
+				{#if edit}
+					<form
+						method="post"
+						enctype="multipart/form-data"
+						action="?/upload"
+						class="flex flex-col items-center justify-center gap-2"
+					>
+						<div>
+							<label for="image" class="block text-sm text-muted-foreground">Profile Image</label>
+
+							<input
+								name="image"
+								id="image"
+								type="file"
+								class="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300"
+							/>
+						</div>
+						<button
+							disabled={uploading}
+							class="px-5 py-2 rounded-md border bg-primary text-primary-foreground">Upload!</button
+						>
+					</form>
+				{/if}
 
 				<UsernameForm bind:edit username={data.user?.username} />
 

@@ -1,5 +1,7 @@
 <script>
+	import { enhance } from '$app/forms';
 	import Footer from '$lib/components/footer.svelte';
+	import { CldUploadButton, CldUploadWidget } from 'svelte-cloudinary';
 
 	export let data;
 </script>
@@ -19,5 +21,11 @@
 
 	<a href="/login" class="px-5 py-2 border rounded-md shadow-lg my-5">Get stated for free</a>
 </div>
+
+<form method="post" enctype="multipart/form-data" use:enhance action="?/upload">
+	<input name="image" id="file-to-upload" type="file" accept=".png,.jpg" />
+
+	<button class="border bg-orange-400 rounded py-2 text-sm">Upload!</button>
+</form>
 
 <Footer />

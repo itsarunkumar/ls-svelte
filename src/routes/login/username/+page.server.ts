@@ -6,10 +6,11 @@ export const load = (async () => {
 }) satisfies PageServerLoad;
 
 export const actions: Actions = {
-	default: async ({ request }) => {
+	default: async ({ request, locals }) => {
+		const session = await locals.auth.validate();
 		const data = await request.formData();
 		const username = data.get('username');
-		const user_id = data.get('userid');
+		const user_id = session?.user.userId;
 		console.log(username);
 
 		const usernameExists = await prisma.user.findUnique({

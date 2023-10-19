@@ -3,7 +3,6 @@
 
 	import Navbar from '$lib/components/navbar.svelte';
 	import Toast from '$lib/components/toast/toast.svelte';
-	import Modal from '$lib/components/modal.svelte';
 	import '../app.css';
 	import { enhance } from '$app/forms';
 	import { writable } from 'svelte/store';
@@ -21,7 +20,8 @@
 </script>
 
 <svelte:head>
-	<script src="https://unpkg.com/@bitjson/qr-code@1.0.2/dist/qr-code.js"></script>
+	<title>Linkspot</title>
+	<meta name="description" content="linkspot a place to share your links" />
 </svelte:head>
 
 <Navbar />
