@@ -6,12 +6,8 @@ import { prisma } from '@lucia-auth/adapter-prisma';
 import { prisma as prismaclient } from '$lib/server/prisma';
 
 import { github, google } from '@lucia-auth/oauth/providers';
-import {
-	GITHUB_CLIENT_ID,
-	GITHUB_CLIENT_SECRET,
-	GOOGLE_CLIENT_ID,
-	GOOGLE_CLIENT_SECRET
-} from '$env/static/private';
+
+import { env } from '$env/dynamic/private';
 
 export const auth = lucia({
 	env: dev ? 'DEV' : 'PROD',
@@ -29,16 +25,20 @@ export const auth = lucia({
 });
 
 export const githubAuth = github(auth, {
-	clientId: GITHUB_CLIENT_ID,
-	clientSecret: GITHUB_CLIENT_SECRET,
-	redirectUri: 'http://localhost:5173/login/github/callback',
+	clientId: env.GITHUB_CLIENT_ID,
+	clientSecret: env.GITHUB_CLIENT_SECRET,
+	redirectUri: dev
+		? 'http://localhost:5173/login/github/callback'
+		: 'https://linkspot.vercel.app/login/github/callback',
 	scope: ['user:email', 'read:user']
 });
 
 export const googleAuth = google(auth, {
-	clientId: GOOGLE_CLIENT_ID,
-	clientSecret: GOOGLE_CLIENT_SECRET,
-	redirectUri: 'http://localhost:5173/login/google/callback',
+	clientId: env.GOOGLE_CLIENT_ID,
+	clientSecret: env.GOOGLE_CLIENT_SECRET,
+	redirectUri: dev
+		? 'http://localhost:5173/login/google/callback'
+		: 'https://linkspot.vercel.app/login/google/callback',
 	scope: [
 		'https://www.googleapis.com/auth/userinfo.email',
 		'https://www.googleapis.com/auth/userinfo.profile',
