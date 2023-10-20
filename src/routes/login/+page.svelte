@@ -10,13 +10,12 @@
 	<title>Login</title>
 </svelte:head>
 
-<!-- routes/login/+page.svelte -->
-<!-- <h1>Sign in</h1>
-<a href="/login/github">Sign in with GitHub</a>
-
-<a href="/login/google">google login</a> -->
-
 <div class="w-full min-h-[calc(100vh-6rem)] flex flex-col items-center justify-center">
+	<img
+		src="https://rstr.in/ee3j70q5p5zq4a/my-library/YTts-y0OiOm"
+		alt="linkspot logo"
+		class=" w-20 h-20 my-10 object-cover object-center"
+	/>
 	<h1 class="text-2xl font-nunito text-center">Sign in or create an account</h1>
 	<div class="flex flex-col items-center gap-5 my-5">
 		<a href="/login/github" class="border px-5 py-2 shadow-sm flex items-center gap-2">
