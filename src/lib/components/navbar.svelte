@@ -52,16 +52,26 @@
 			</div>
 		{:else if !$page.data.loggedIn}
 			<div transition:slide class="flex flex-col items-center justify-around gap-5">
+				<img
+					src="https://rstr.in/ee3j70q5p5zq4a/my-library/YTts-y0OiOm"
+					alt="linkspot logo"
+					class=" w-10 h-10 object-cover object-center"
+				/>
 				<h1 class="text-2xl">Login or Sign up</h1>
-				<span>...with:</span>
-				<div class="flex gap-5 items-center">
-					<a href="/login/github" class="flex gap-2 items-center">
-						<Github class="w-5 h-5" /> Github
-					</a>
-
-					<a href="/login/google" class="flex gap-2 items-center">
-						<Google class="w-5 h-5" /> Google
-					</a>
+				<span>using</span>
+				<div class="flex flex-col items-center gap-5 my-5">
+					<a
+						href="/login/github"
+						class="border rounded-md px-5 py-2 shadow-sm flex items-center gap-2"
+					>
+						<Github class="w-6 h-6" /> Sign in with GitHub</a
+					>
+					<a
+						href="/login/google"
+						class="border rounded-md px-5 py-2 shadow-sm flex items-center gap-2"
+					>
+						<Google class="w-6 h-6" /> Sign in with Google</a
+					>
 				</div>
 			</div>
 		{/if}
@@ -76,7 +86,13 @@
 	)}
 >
 	<div class={cn(`flex items-center `)}>
-		<a href="/" class="text-xl font-semibold">Linkspot</a>
+		<a href="/" class="text-xl flex items-center gap-2"
+			><img
+				src="https://rstr.in/ee3j70q5p5zq4a/my-library/YTts-y0OiOm"
+				alt="linkspot logo"
+				class=" w-6 h-6 object-cover object-center"
+			/>Linkspot</a
+		>
 	</div>
 
 	<div class={cn('flex items-center gap-5 max-sm:hidden')}>

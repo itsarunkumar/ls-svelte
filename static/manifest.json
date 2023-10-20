@@ -1,0 +1,15 @@
+{
+	"name": "Linkspot",
+	"short_name": "Linkspot",
+	"start_url": "/",
+	"display": "standalone",
+	"background_color": "#ffffff",
+	"theme_color": "#ffffff",
+	"icons": [
+		{
+			"src": "/favicon.png",
+			"type": "image/png",
+			"sizes": "any"
+		}
+	]
+}
