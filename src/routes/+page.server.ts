@@ -4,7 +4,6 @@ import type { Actions, PageServerLoad } from './$types';
 import { auth } from '$lib/server/lucia';
 
 export const load: PageServerLoad = async () => {
-	// upload();
 	return {};
 };
 

@@ -82,7 +82,7 @@
 	on:outside={() => (view = true)}
 	use:clickOutside
 	class={cn(
-		`w-full min-h-[50px]  relative capitalize flex justify-around items-center px-5 py-2  z-10 transition-all duration-300 ease-in-out ${$$props.class}`
+		`w-full min-h-[50px]  relative capitalize flex justify-between items-center px-5 py-2  z-10 transition-all duration-300 ease-in-out ${$$props.class}`
 	)}
 >
 	<div class={cn(`flex items-center `)}>
@@ -131,9 +131,15 @@
 				)}
 			>
 				{#if $page.data.user && $page.data.loggedIn}
-					<a href="/pages">Pages</a>
-					<a href="/dashboard">dashboard</a>
-					<button on:click={() => (showModal = true)} class=" rounded-full flex gap-2 items-center">
+					<a href="/pages" on:click={() => (view = !view)}>Pages</a>
+					<a href="/dashboard" on:click={() => (view = !view)}>dashboard</a>
+					<button
+						on:click={() => {
+							showModal = true;
+							view = !view;
+						}}
+						class=" rounded-full flex gap-2 items-center"
+					>
 						<User class="w-4 h-4" /> Profile
 					</button>
 				{:else}

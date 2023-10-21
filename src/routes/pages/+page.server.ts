@@ -1,10 +1,8 @@
 import { prisma } from '$lib/server/prisma';
-import type { Page } from '@prisma/client';
 import type { Actions, PageServerLoad } from './$types';
 
-export const load = (async ({ locals, url }) => {
+export const load = (async ({ locals }) => {
 	const session = await locals.auth.validate();
-	const pageid = url.searchParams.get('pageid');
 
 	if (!session) {
 		return {
@@ -12,28 +10,17 @@ export const load = (async ({ locals, url }) => {
 		};
 	}
 
-	const pages: Page[] = await prisma.page.findMany({
+	const pages = prisma.page.findMany({
 		where: {
 			userId: session?.user.userId as string
 		}
 	});
 
-	let singlePage;
-
-	if (pageid) {
-		singlePage = await prisma.page.findUnique({
-			where: {
-				id: pageid as string
-			},
-			include: {
-				links: true
-			}
-		});
-	}
-
 	return {
-		pages,
-		singlePage: singlePage ? singlePage : null
+		pages: pages,
+		stream: {
+			c: pages
+		}
 	};
 }) satisfies PageServerLoad;
 
