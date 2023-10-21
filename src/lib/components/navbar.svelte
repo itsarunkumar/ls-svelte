@@ -12,7 +12,7 @@
 	import Github from './icons/github.svelte';
 
 	let view = true;
-	let showModal = true;
+	let showModal = false;
 
 	function showNav() {
 		view = !view;
