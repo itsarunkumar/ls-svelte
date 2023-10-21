@@ -23,7 +23,7 @@
 	bind:this={dialog}
 	on:close={() => (showModal = false)}
 	on:click|self={() => dialog.close()}
-	class={cn(`w-96 min-h-[20rem] p-4 relative rounded ${$$props.class} `)}
+	class={cn(`w-96 min-h-[20rem] p-4 relative  rounded ${$$props.class} `)}
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation>

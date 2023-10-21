@@ -8,7 +8,7 @@
 			<h1 class="text-2xl font-semibold capitalize">linkspot</h1>
 		</a>
 
-		<div
+		<!-- <div
 			class="flex flex-wrap items-center justify-center gap-4 mt-6 lg:gap-6 lg:mt-0 text-primary"
 		>
 			<a
@@ -37,7 +37,7 @@
 			>
 				Careers
 			</a>
-		</div>
+		</div> -->
 
 		<p class="mt-6 text-sm text-gray-500 lg:mt-0 dark:text-gray-400">© Copyright 2023</p>
 		<!-- <DarkMode /> -->

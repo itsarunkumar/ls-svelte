@@ -1,16 +1,20 @@
 import { prisma } from '$lib/server/prisma';
 import type { PageServerLoad } from './$types';
 
-export const load = (async ({ params, locals }) => {
-	const session = await locals.auth.validate();
-
+export const load = (async ({ params }) => {
 	const unique_page = params.page;
 
-	const public_page = await prisma.page.findUnique({
+	const user = await prisma.user.findUnique({
+		where: {
+			username: params.id as string
+		}
+	});
+
+	const public_page = prisma.page.findUnique({
 		where: {
 			name_userId: {
-				name: unique_page as string,
-				userId: session?.user.id as string
+				name: unique_page,
+				userId: user?.id as string
 			}
 		},
 		include: {
@@ -23,6 +27,9 @@ export const load = (async ({ params, locals }) => {
 	});
 
 	return {
-		page: public_page
+		stream: {
+			page: public_page
+		},
+		user: user
 	};
 }) satisfies PageServerLoad;

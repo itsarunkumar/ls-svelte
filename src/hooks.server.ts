@@ -6,6 +6,7 @@ const publicRoutes: string[] = [
 	'/',
 	'/login',
 	'/(public)/[id]',
+	'/(public)/[id]/[page]',
 	'/login/google/callback',
 	'/login/github/callback',
 	'/login/github',
