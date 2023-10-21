@@ -1,5 +1,8 @@
 <script>
 	import { cn } from '$lib/utils/cn';
+	import { X } from 'lucide-svelte';
+	import { quintOut } from 'svelte/easing';
+	import { fly, scale } from 'svelte/transition';
 
 	/**
 	 * @type {boolean}
@@ -16,17 +19,18 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events a11y-no-noninteractive-element-interactions -->
 <dialog
+	transition:scale
 	bind:this={dialog}
 	on:close={() => (showModal = false)}
 	on:click|self={() => dialog.close()}
-	class={cn(`w-96 min-h-[20rem] p-4 rounded ${$$props.class} `)}
+	class={cn(`w-96 min-h-[20rem] p-4 relative rounded ${$$props.class} `)}
 >
 	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div on:click|stopPropagation>
 		<slot />
 
 		<!-- svelte-ignore a11y-autofocus -->
-		<!-- <button autofocus on:click={() => dialog.close()}>close modal</button> -->
+		<button autofocus class="absolute top-2 right-2" on:click={() => dialog.close()}><X /></button>
 	</div>
 </dialog>
 
@@ -43,7 +47,8 @@
 	dialog > div {
 		padding: 1em;
 	}
-	dialog[open] {
+
+	/* dialog[open] {
 		animation: zoom 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 	}
 	@keyframes zoom {
@@ -53,7 +58,7 @@
 		to {
 			transform: scale(1);
 		}
-	}
+	} */
 	dialog[open]::backdrop {
 		animation: fade 0.2s ease-out;
 	}
