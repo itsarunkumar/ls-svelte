@@ -2,10 +2,11 @@
 	// @ts-nocheck
 
 	import Navbar from '$lib/components/navbar.svelte';
-	import Toast from '$lib/components/toast/toast.svelte';
 	import '../app.css';
 	import { enhance } from '$app/forms';
 	import { writable } from 'svelte/store';
+
+	import { Toast } from '@svelte-things/toast';
 
 	let showModal = false;
 
@@ -71,7 +72,7 @@
 
 <slot />
 
-<Toast />
+<Toast position="top-center" />
 
 <style>
 	:global(html) {

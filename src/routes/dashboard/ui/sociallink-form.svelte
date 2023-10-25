@@ -1,7 +1,8 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { addToast } from '$lib/components/toast/toast';
 	import type { Icons, TData } from './types';
+
+	import { toaster } from '@svelte-things/toast';
 
 	export let icons: Icons;
 
@@ -18,10 +19,9 @@
 			await update();
 			edit = false;
 			if (result.type === 'success') {
-				addToast({
-					title: `${result.type}`,
-					content: 'Social links updated',
-					type: 'success'
+				toaster.success({
+					title: 'Success',
+					content: 'Social links updated'
 				});
 			}
 		};

@@ -1,8 +1,9 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { addToast } from '$lib/components/toast/toast';
 	import { quintOut } from 'svelte/easing';
 	import { fly, scale, slide } from 'svelte/transition';
+
+	import { toaster } from '@svelte-things/toast';
 
 	export let link: string;
 	export let name: string;
@@ -35,7 +36,7 @@
 				return async ({ update, result }) => {
 					await update();
 					if (result.type === 'success') {
-						addToast({ title: 'Success', content: 'Link deleted' });
+						toaster.success({ title: 'Success', content: 'Link deleted' });
 					}
 				};
 			}}

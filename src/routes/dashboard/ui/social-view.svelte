@@ -2,7 +2,7 @@
 	import { ArrowUpRight } from 'lucide-svelte';
 	import type { Icons, TData } from './types';
 	import { enhance } from '$app/forms';
-	import { addToast } from '$lib/components/toast/toast';
+	import { toaster } from '@svelte-things/toast';
 
 	export let data: TData;
 	export let icons: Icons;
@@ -42,9 +42,9 @@
 							use:enhance={() => {
 								return async ({ update }) => {
 									await update();
-									addToast({
+									toaster.success({
 										title: 'Success',
-										content: 'Link deleted'
+										content: 'Social link deleted'
 									});
 								};
 							}}

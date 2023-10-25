@@ -7,13 +7,14 @@
 	import SociallinkForm from './ui/sociallink-form.svelte';
 	import SocialView from './ui/social-view.svelte';
 	import Link from './ui/link.svelte';
-	import { addToast } from '$lib/components/toast/toast';
 	import Modal from '$lib/components/modal.svelte';
 	import { Check, Copy, Share2 } from 'lucide-svelte';
 	import { copy } from '$lib/utils/copy';
 	import { qr } from '@svelte-put/qr/svg';
 	import { onMount } from 'svelte';
 	import { fade, fly, scale } from 'svelte/transition';
+
+	import { toaster } from '@svelte-things/toast';
 
 	export let data: PageData;
 
@@ -34,12 +35,6 @@
 
 	function handlecopy(e: CustomEvent) {
 		isCopied = true;
-
-		addToast({
-			title: 'Copied',
-			content: e.detail.copiedText,
-			type: 'success'
-		});
 
 		setTimeout(() => {
 			isCopied = false;
@@ -226,7 +221,7 @@
 						return async ({ update, result }) => {
 							await update();
 							if (result.type === 'success') {
-								addToast({
+								toaster.success({
 									title: 'Success',
 									content: 'Link created'
 								});

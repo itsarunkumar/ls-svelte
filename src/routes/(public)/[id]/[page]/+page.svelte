@@ -1,13 +1,16 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { page } from '$app/stores';
-	import { ArrowUpRight } from 'lucide-svelte';
+	import { ArrowUpRight, RotateCcw } from 'lucide-svelte';
 
 	export let data: PageData;
 </script>
 
 {#await data.stream.page}
-	<p>loading</p>
+	<div class="w-full min-h-screen flex gap-3 items-center justify-center">
+		<h1>Loading...</h1>
+		<RotateCcw class="w-8 h-8 animate-spin" />
+	</div>
 {:then page}
 	{#if page}
 		<div class="w-full flex flex-col items-center justify-center gap-5">
@@ -31,7 +34,7 @@
 				{/each}
 			</div>
 			<div class="flex gap-2 items-center self-center mx-10 opacity-40">
-				<span class="text-sm text-muted-foreground">currated by</span>
+				<span class="text-sm text-muted-foreground">curated by</span>
 				<img
 					src={data.user?.profile_pic}
 					alt={data.user?.username}

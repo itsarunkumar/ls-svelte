@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { addToast } from '$lib/components/toast/toast';
 	import { writable } from 'svelte/store';
+	import { toaster } from '@svelte-things/toast';
 
 	export let edit: boolean;
 	let username_res = writable(null);
@@ -20,18 +20,17 @@
 				if (result.type === 'success') {
 					edit = false;
 					await update();
-					addToast({
+					toaster.success({
 						title: 'Success',
-						content: 'Username updated',
-						type: 'success'
+						content: 'Username updated'
 					});
 				}
 				if (result.type === 'error') {
 					await update();
-					addToast({
+
+					toaster.error({
 						title: 'Failure',
-						content: 'Username already exists',
-						type: 'error'
+						content: 'Username already exists'
 					});
 				}
 			};
