@@ -11,7 +11,6 @@ export const actions: Actions = {
 		const data = await request.formData();
 		const username = data.get('username');
 		const user_id = session?.user.userId;
-		console.log(username);
 
 		const usernameExists = await prisma.user.findUnique({
 			where: {

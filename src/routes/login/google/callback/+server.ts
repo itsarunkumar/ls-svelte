@@ -1,5 +1,6 @@
 import type { RequestHandler } from './$types';
 import { auth, googleAuth } from '$lib/server/lucia';
+import { prisma } from '$lib/server/prisma';
 
 export const GET: RequestHandler = async ({ cookies, url, locals }) => {
 	const storedState = cookies.get('google_oauth_state');
@@ -18,13 +19,23 @@ export const GET: RequestHandler = async ({ cookies, url, locals }) => {
 	const getUser = async () => {
 		const existingUser = await getExistingUser();
 		if (existingUser) return existingUser;
-		console.log(googleUser);
 
 		const user = await createUser({
 			attributes: {
 				email: googleUser.email as string
 			}
 		});
+
+		// set profile pic from oauth account as default
+		await prisma.user.update({
+			where: {
+				id: user.userId
+			},
+			data: {
+				profile_pic: googleUser.picture as string
+			}
+		});
+
 		return user;
 	};
 
