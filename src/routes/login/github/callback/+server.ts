@@ -1,10 +1,9 @@
 // routes/login/github/callback/+server.ts
 import { auth, githubAuth } from '$lib/server/lucia.js';
+import { prisma } from '$lib/server/prisma';
 // import { OAuthRequestError } from '@lucia-auth/oauth';
 
 export const GET = async ({ url, cookies, locals }) => {
-	console.log('callback gituhub');
-
 	const storedState = cookies.get('github_oauth_state');
 	const state = url.searchParams.get('state');
 	const code = url.searchParams.get('code');
@@ -20,7 +19,6 @@ export const GET = async ({ url, cookies, locals }) => {
 
 	const getUser = async () => {
 		const existingUser = await getExistingUser();
-		console.log(githubUser);
 
 		if (existingUser) return existingUser;
 		const user = await createUser({
@@ -28,6 +26,17 @@ export const GET = async ({ url, cookies, locals }) => {
 				email: githubUser.email as string
 			}
 		});
+
+		// set the oauth profile pic as default
+		await prisma.user.update({
+			where: {
+				id: user.userId
+			},
+			data: {
+				profile_pic: githubUser.avatar_url as string
+			}
+		});
+
 		return user;
 	};
 

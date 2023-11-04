@@ -69,6 +69,7 @@ model Link {
 model Page {
   id        String   @unique @default(uuid())
   name      String
+  page_pic  String?
   links     Link[]
   User      User?    @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId    String?

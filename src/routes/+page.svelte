@@ -1,8 +1,6 @@
 <script>
-	import { enhance } from '$app/forms';
 	import Footer from '$lib/components/footer.svelte';
 	import { Landing } from '$lib/components/icons';
-	import { CldUploadButton, CldUploadWidget } from 'svelte-cloudinary';
 
 	export let data;
 </script>

@@ -45,7 +45,7 @@
 		use:enhance={() => {
 			return async ({ update, result }) => {
 				await update();
-				console.log(result);
+
 				if (result?.data.created === false) {
 					toaster.error({
 						title: 'Error',

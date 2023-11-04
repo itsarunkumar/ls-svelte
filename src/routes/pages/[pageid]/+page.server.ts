@@ -1,5 +1,6 @@
 import type { Actions, PageServerLoad } from './$types';
 import { prisma } from '$lib/server/prisma';
+import { uploadFile } from '$lib/file/cloudinary';
 
 export const load = (async ({ params }: { params: { pageid: string } }) => {
 	const { pageid } = params;
@@ -64,5 +65,28 @@ export const actions: Actions = {
 			msg: 'deleted',
 			deleted_link: delete_link
 		};
+	},
+	upload: async ({ request, locals }) => {
+		const data = await request.formData();
+		const session = await locals.auth.validate();
+		const file = data.get('image') as File;
+		const page_id = data.get('pageid');
+
+		await uploadFile(
+			file,
+			session?.user.id as string,
+			session?.user.email as string,
+			'ls-page-pics',
+			(url) => {
+				return prisma.page.update({
+					where: {
+						id: page_id as string
+					},
+					data: {
+						page_pic: url
+					}
+				});
+			}
+		);
 	}
 };

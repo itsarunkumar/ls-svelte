@@ -50,7 +50,8 @@ export const actions: Actions = {
 		const new_page = await prisma.page.create({
 			data: {
 				name: name as string,
-				userId: user_id as string
+				userId: user_id as string,
+				page_pic: 'https://rstr.in/ee3j70q5p5zq4a/my-library/YTts-y0OiOm'
 			}
 		});
 

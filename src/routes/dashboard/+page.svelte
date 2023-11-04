@@ -80,7 +80,6 @@
 						class="sr-only"
 						bind:checked={edit}
 						on:click={() => (edit = !edit)}
-						on:change={() => console.log(edit)}
 					/>
 
 					<!-- Visible switch -->
