@@ -23,7 +23,7 @@
 	on:outside={() => (view = true)}
 	use:clickOutside
 	class={cn(
-		`w-full min-h-[50px]  relative capitalize flex justify-between items-center px-5 py-2  z-10 transition-all duration-300 ease-in-out ${$$props.class}`
+		`w-full min-h-[50px]  relative capitalize flex justify-between items-center px-5 py-4  z-10 transition-all duration-300 ease-in-out  bg-purple-600 border-b shadow font-semibold  ${$$props.class}`
 	)}
 >
 	<div class={cn(`flex items-center `)}>
@@ -152,63 +152,3 @@
 		{/if}
 	</div>
 </Modal>
-
-<!-- <Modal
-	bind:showModal
-	class="bg-primary-foreground text-primary flex flex-col items-center justify-center "
->
-	{#if $page.data.user && $page.data.loggedIn}
-		<div class="w-full h-full flex flex-col items-center justify-center gap-3">
-			<img
-				class="w-20 h-20 rounded-full object-cover object-center"
-				alt=""
-				src={$page.data.user.profile_pic}
-			/>
-
-			<h1>{$page.data.user.username}</h1>
-			<span>{$page.data.user.email}</span>
-
-			<form
-				method="post"
-				action="/logout"
-				use:enhance={() => {
-					return async ({ update }) => {
-						await update();
-						showModal = false;
-					};
-				}}
-			>
-				<button class="capitalize px-5 py-2 rounded-md bg-primary text-primary-foreground shadow"
-					>Logout</button
-				>
-			</form>
-		</div>
-	{:else if !$page.data.loggedIn}
-		<div transition:slide class="flex flex-col items-center justify-around gap-5">
-			<img
-				src="https://rstr.in/ee3j70q5p5zq4a/my-library/YTts-y0OiOm"
-				alt="linkspot logo"
-				class=" w-10 h-10 object-cover object-center"
-			/>
-			<h1 class="text-2xl">Login or Sign up</h1>
-			<span>using</span>
-			<div class="flex flex-col items-center gap-5 my-5">
-				<a
-					href="/login/github"
-					class="border rounded-md px-5 py-2 shadow-sm flex items-center gap-2"
-				>
-					<Github class="w-6 h-6" /> Sign in with GitHub</a
-				>
-				<a
-					href="/login/google"
-					class="border rounded-md px-5 py-2 shadow-sm flex items-center gap-2"
-				>
-					<Google class="w-6 h-6" /> Sign in with Google</a
-				>
-			</div>
-		</div>
-	{/if}
-</Modal> -->
-
-<style>
-</style>
