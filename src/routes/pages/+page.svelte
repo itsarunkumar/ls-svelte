@@ -87,7 +87,7 @@
 				<div
 					in:fly={{ duration: 500, easing: quintOut }}
 					out:scale={{ duration: 500 }}
-					class="min-w-[300px] flex flex-col justify-center gap-2 border rounded-md px-3 py-2"
+					class="min-w-[300px] flex flex-col justify-center gap-2 border-2 shadow-xl rounded-md px-3 py-2"
 				>
 					<div class="flex items-center justify-between">
 						<a href="/pages/{page.id}" class="text-lg font-semibold capitalize">{page.name}</a>
@@ -165,4 +165,6 @@
 			{/each}
 		{/if}
 	</div>
+{:catch error}
+	<div class="text-2xl">Something went wrong , please try again</div>
 {/await}

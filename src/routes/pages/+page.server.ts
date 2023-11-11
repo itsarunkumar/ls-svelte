@@ -1,4 +1,5 @@
 import { prisma } from '$lib/server/prisma';
+import { tick } from 'svelte';
 import type { Actions, PageServerLoad } from './$types';
 
 export const load = (async ({ locals }) => {
@@ -10,6 +11,8 @@ export const load = (async ({ locals }) => {
 		};
 	}
 
+	await tick();
+
 	const pages = prisma.page.findMany({
 		where: {
 			userId: session?.user.userId as string
@@ -17,7 +20,6 @@ export const load = (async ({ locals }) => {
 	});
 
 	return {
-		pages: pages,
 		stream: {
 			c: pages
 		}
