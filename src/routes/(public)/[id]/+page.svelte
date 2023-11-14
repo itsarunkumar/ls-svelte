@@ -37,9 +37,9 @@
 			alt={data.public_details?.username}
 			class="w-24 h-24 rounded-full object-cover object-center shadow-md"
 		/>
-		<h1 class="text-2xl font-semibold">{data.public_details?.username}</h1>
+		<h1 class="text-2xl font-semibold capitalize">{data.public_details?.username}</h1>
 
-		<div class="flex flex-col items-center gap-3">
+		<div class="flex flex-col items-center justify-center gap-3">
 			{#each data.public_details?.social_links as social_link}
 				{#if social_link.username}
 					<div class="flex items-center gap-2">
@@ -66,11 +66,16 @@
 		<div class="flex flex-col gap-3 items-center my-10 relative px-2">
 			{#each data?.public_details.links as link}
 				<div
-					class=" min-w-[300px] flex gap-2 items-center flex-col border rounded-md px-3 py-2 shadow-md bg-primary-foreground before:absolute before:-inset-1 before:rounded-md before:shadow-md before:bg-primary/5 before:blur-2xl before:w-full before:h-full before:-z-10"
+					class=" w-[300px] flex gap-2 items-center flex-col border rounded-md px-3 py-2 shadow-md bg-primary-foreground before:absolute before:-inset-1 before:rounded-md before:shadow-md before:bg-primary/5 before:blur-2xl before:w-full before:h-full before:-z-10"
 				>
 					<span class="capitalize font-semibold">{link.name}</span>
-					<a href={link.url} target="_blank" class="text-xs text-muted-foreground">
-						{link.url.startsWith('http') ? link.url.slice(12) : link.url}
+					<a
+						href={link.url}
+						target="_blank"
+						class="text-xs text-muted-foreground text-ellipsis overflow-hidden"
+					>
+						<!-- {link.url.startsWith('http') ? link.url.slice(12) : link.url} -->
+						{link.url}
 					</a>
 				</div>
 			{/each}

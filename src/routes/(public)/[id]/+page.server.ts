@@ -8,7 +8,11 @@ export const load = (async ({ params }) => {
 		where: { username: username as string },
 		select: {
 			social_links: true,
-			links: true,
+			links: {
+				where: {
+					pageId: null
+				}
+			},
 			username: true,
 			profile_pic: true
 		}
