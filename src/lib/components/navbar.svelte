@@ -23,7 +23,7 @@
 	on:outside={() => (view = true)}
 	use:clickOutside
 	class={cn(
-		`w-full min-h-[50px]  relative capitalize flex justify-between items-center px-5 py-4  z-10 transition-all duration-300 ease-in-out  bg-purple-600 border-b shadow font-semibold  ${$$props.class}`
+		`w-full min-h-[50px] bg-primary text-primary-foreground  relative capitalize flex justify-between items-center px-5 py-4  z-10 transition-all duration-300 ease-in-out border-b shadow mb-3  ${$$props.class}`
 	)}
 >
 	<div class={cn(`flex items-center `)}>
@@ -74,7 +74,7 @@
 			<div
 				transition:slide={{ duration: 500, easing: quintOut }}
 				class={cn(
-					' absolute px-5 py-2 rounded-md shadow-2xl  top-10 right-0 flex flex-col items-center gap-2 transition-all duration-300 ease-in-out z-10 bg-primary-foreground border'
+					' absolute px-5 text-primary py-2 rounded-md shadow-2xl  top-10 right-0 flex flex-col items-center gap-2 transition-all duration-300 ease-in-out z-10 bg-primary-foreground border'
 				)}
 			>
 				{#if $page.data.user && $page.data.loggedIn}

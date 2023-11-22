@@ -9,20 +9,20 @@
 </script>
 
 {#if data.user}
-	<div class="px-5 w-full flex flex-wrap items-center justify-center gap-5">
+	<div class="px-5 w-full flex flex-wrap flex-col items-center justify-center gap-5">
 		{#each data.user.social_links as link (link.id)}
 			{#if link.username}
 				<div
-					class=" bg-primary-foreground relative flex flex-col justify-center items-center gap-3 px-2 w-44 h-36 rounded-md border shadow-md before:absolute before:-inset-3 before:rounded-md before:shadow-md before:content-[''] before:bg-primary/10 before:-z-10 before:w-full before:h-full before:blur-xl"
+					class=" bg-primary-foreground relative flex flex-col justify-center items-center gap-3 px-2 w-96 h-36 rounded-md border shadow-md before:absolute before:-inset-3 before:rounded-md before:shadow-md before:content-[''] before:bg-primary/10 before:-z-10 before:w-full before:h-full before:blur-xl"
 				>
-					<div class="flex items-center gap-2 self-start align-middle px-3">
+					<div class="flex items-center gap-2 self-start align-middle px-3 border-b w-full py-0.5">
 						<svelte:component
 							this={icons.find((i) => i.title === link.name)?.icon}
 							class="w-8 h-8   mix-blend-normal "
 						/>
 						<span class="text-sm italic font-philosopher">{link.name}</span>
 					</div>
-					<div>
+					<div class="flex flex-col items-start gap-1">
 						<span class="text-base font-semibold">@{link.username}</span>
 						<a
 							href={link.url}
@@ -33,9 +33,9 @@
 						>
 					</div>
 
-					<div class="flex gap-2 items-center justify-evenly border-t w-full capitalize">
+					<div class="flex gap-2 text-base items-center justify-evenly w-full capitalize">
 						<a href={link.url} target="_blank" class="">view </a>
-						<hr class="w-[1px] h-5 border" />
+
 						<form
 							action="?/deleteSocialLink"
 							method="post"
