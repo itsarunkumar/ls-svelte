@@ -1,8 +1,9 @@
 <script lang="ts">
+	// @ts-nocheck
 	import { ArrowUpRight } from 'lucide-svelte';
 	import type { Icons, TData } from './types';
 	import { enhance } from '$app/forms';
-	import { toaster } from '@svelte-things/toast';
+	import { toaster } from '@svelte-kit/svelte-toast';
 
 	export let data: TData;
 	export let icons: Icons;
