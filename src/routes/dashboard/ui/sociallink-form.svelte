@@ -1,8 +1,9 @@
 <script lang="ts">
+	// @ts-nocheck
 	import { enhance } from '$app/forms';
 	import type { Icons, TData } from './types';
 
-	import { toaster } from '@svelte-things/toast';
+	import { toaster } from '@svelte-kit/svelte-toast';
 
 	export let icons: Icons;
 

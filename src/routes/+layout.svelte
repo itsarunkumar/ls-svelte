@@ -6,7 +6,7 @@
 	import { enhance } from '$app/forms';
 	import { writable } from 'svelte/store';
 
-	import { Toast } from '@svelte-things/toast';
+	import { Toast } from '@svelte-kit/svelte-toast';
 	import CreateUsername from '$lib/components/create-username.svelte';
 
 	let showModal = false;

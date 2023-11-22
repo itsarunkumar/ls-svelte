@@ -14,9 +14,9 @@ dependencies:
   '@prisma/client':
     specifier: ^5.5.0
     version: 5.5.0(prisma@5.5.0)
-  '@svelte-things/toast':
-    specifier: ^0.7.1
-    version: 0.7.1(svelte@4.2.1)
+  '@svelte-kit/svelte-toast':
+    specifier: ^0.9.0
+    version: 0.9.0(svelte@4.2.1)
   cloudinary:
     specifier: ^1.41.0
     version: 1.41.0
@@ -597,6 +597,16 @@ packages:
       rollup: 3.29.4
     dev: true
 
+  /@svelte-kit/svelte-toast@0.9.0(svelte@4.2.1):
+    resolution: {integrity: sha512-lnd4GLXLUs9rOcbXcoMN6rzU2ayrbbJsw0vN76dhgGucGsPW7LWEhmC1df+yR2ayGzRqBp4ek2VYdDOZP+tLNA==}
+    peerDependencies:
+      svelte: ^4.0.0
+    dependencies:
+      clsx: 2.0.0
+      svelte: 4.2.1
+      tailwind-merge: 1.14.0
+    dev: false
+
   /@svelte-put/copy@3.0.0:
     resolution: {integrity: sha512-zfQ68bTC1Mmfairu0fN5y5NPkXV7XUjuPsP+Ntqb8TD6xTa8czBLvgsFxUzOT8hcxfHyXJ8acIhK9V4xgpE94w==}
     dev: true
@@ -606,16 +616,6 @@ packages:
     dependencies:
       qrcode-generator: 1.4.4
     dev: true
-
-  /@svelte-things/toast@0.7.1(svelte@4.2.1):
-    resolution: {integrity: sha512-UxcG1T2QP3YA8pSOWvCIa3apR4sN+9IX37Ou9UZGI1k4Wzt2z8kDH2deinGtCQAv8UeUAFPPhYHLak4K3VD/lA==}
-    peerDependencies:
-      svelte: ^4.0.0
-    dependencies:
-      clsx: 2.0.0
-      svelte: 4.2.1
-      tailwind-merge: 1.14.0
-    dev: false
 
   /@sveltejs/adapter-auto@2.1.0(@sveltejs/kit@1.25.2):
     resolution: {integrity: sha512-o2pZCfATFtA/Gw/BB0Xm7k4EYaekXxaPGER3xGSY3FvzFJGTlJlZjBseaXwYSM94lZ0HniOjTokN3cWaLX6fow==}

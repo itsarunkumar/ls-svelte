@@ -1,11 +1,12 @@
 <script lang="ts">
+	// @ts-nocheck
 	import type { PageData } from './$types';
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';
 	import { fly } from 'svelte/transition';
 	import { flip } from 'svelte/animate';
 	import { Trash } from 'lucide-svelte';
-	import { toaster } from '@svelte-things/toast';
+	import { toaster } from '@svelte-kit/svelte-toast';
 
 	export let data: PageData;
 

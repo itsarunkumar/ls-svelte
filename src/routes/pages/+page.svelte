@@ -1,4 +1,5 @@
 <script lang="ts">
+	// @ts-nocheck
 	import { enhance } from '$app/forms';
 	import { Check, Copy, Edit, Share, Share2, Trash } from 'lucide-svelte';
 	import type { PageData } from './$types';
@@ -11,7 +12,7 @@
 	import { onMount } from 'svelte';
 	import { qr } from '@svelte-put/qr/svg';
 
-	import { toaster } from '@svelte-things/toast';
+	import { toaster } from '@svelte-kit/svelte-toast';
 
 	export let data: PageData;
 

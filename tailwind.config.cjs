@@ -2,7 +2,7 @@
 const config = {
 	content: [
 		'./src/**/*.{html,js,svelte,ts}',
-		'./node_modules/@svelte-things/**/*.{html,js,svelte,ts}'
+		'./node_modules/@svelte-kit/**/*.{html,js,svelte,ts}'
 	],
 
 	theme: {

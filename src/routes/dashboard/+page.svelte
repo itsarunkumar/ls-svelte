@@ -14,7 +14,7 @@
 	import { onMount } from 'svelte';
 	import { fade, fly, scale } from 'svelte/transition';
 
-	import { toaster } from '@svelte-things/toast';
+	import { toaster } from '@svelte-kit/svelte-toast';
 
 	export let data: PageData;
 

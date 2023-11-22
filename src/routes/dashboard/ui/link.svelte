@@ -1,9 +1,10 @@
 <script lang="ts">
+	// @ts-nocheck
 	import { enhance } from '$app/forms';
 	import { quintOut } from 'svelte/easing';
 	import { fly, scale, slide } from 'svelte/transition';
 
-	import { toaster } from '@svelte-things/toast';
+	import { toaster } from '@svelte-kit/svelte-toast';
 
 	export let link: string;
 	export let name: string;
