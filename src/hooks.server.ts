@@ -4,13 +4,13 @@ import { redirect, type Handle } from '@sveltejs/kit';
 
 const publicRoutes: string[] = [
 	'/',
-	'/login',
+	'/(auth)/login',
 	'/(public)/[id]',
 	'/(public)/[id]/[page]',
-	'/login/google/callback',
-	'/login/github/callback',
-	'/login/github',
-	'/login/google'
+	'/(auth)/login/google/callback',
+	'/(auth)/login/github/callback',
+	'/(auth)/login/github',
+	'/(auth)/login/google'
 ];
 
 export const handle: Handle = async ({ event, resolve }) => {

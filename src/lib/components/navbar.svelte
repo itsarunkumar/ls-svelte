@@ -1,15 +1,19 @@
 <script>
-	import { cn } from '$lib/utils/cn';
-	import { clickOutside } from '$lib/utils/click-outside';
 	import { fly, scale, slide } from 'svelte/transition';
 	import { quintOut } from 'svelte/easing';
-	import { Goal, Menu, PersonStanding, User, UserCircle, X } from 'lucide-svelte';
+	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
+
+	import { Goal, Menu, PersonStanding, User, UserCircle, X } from 'lucide-svelte';
+
+	import { cn } from '$lib/utils/cn';
+	import { clickOutside } from '$lib/utils/click-outside';
+
 	import DarkMode from './dark-mode.svelte';
 	import Modal from './modal.svelte';
-	import { enhance } from '$app/forms';
 	import Google from './icons/google.svelte';
 	import Github from './icons/github.svelte';
+	import Logo from './logo.svelte';
 
 	let view = true;
 	let showModal = false;
@@ -26,15 +30,7 @@
 		`w-full min-h-[50px] bg-primary text-primary-foreground  relative capitalize flex justify-between items-center px-5 py-4  z-10 transition-all duration-300 ease-in-out border-b shadow mb-3  ${$$props.class}`
 	)}
 >
-	<div class={cn(`flex items-center `)}>
-		<a href="/" class="text-xl flex items-center gap-2"
-			><img
-				src="https://rstr.in/ee3j70q5p5zq4a/my-library/YTts-y0OiOm"
-				alt="linkspot logo"
-				class=" w-6 h-6 object-cover object-center"
-			/>Linkspot</a
-		>
-	</div>
+	<Logo />
 
 	<div class={cn('flex items-center gap-5 max-sm:hidden')}>
 		{#if $page.data.user && $page.data.loggedIn}
@@ -47,7 +43,7 @@
 				}}
 				class=" rounded-full flex gap-2 items-center"
 			>
-				<User class="w-4 h-4" /> Profile
+				Profile
 			</button>
 		{:else}
 			<button on:click={() => (showModal = true)} class=" rounded-full flex gap-2 items-center">
