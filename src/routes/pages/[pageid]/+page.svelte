@@ -1,5 +1,4 @@
 <script lang="ts">
-	// @ts-nocheck
 	import type { PageData } from './$types';
 	import { page } from '$app/stores';
 	import { enhance } from '$app/forms';

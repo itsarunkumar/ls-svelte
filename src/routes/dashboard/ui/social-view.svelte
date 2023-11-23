@@ -1,5 +1,4 @@
 <script lang="ts">
-	// @ts-nocheck
 	import { ArrowUpRight } from 'lucide-svelte';
 	import type { Icons, TData } from './types';
 	import { enhance } from '$app/forms';

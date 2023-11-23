@@ -1,5 +1,4 @@
 <script lang="ts">
-	// @ts-nocheck
 	import { enhance } from '$app/forms';
 	import { quintOut } from 'svelte/easing';
 	import { fly, scale, slide } from 'svelte/transition';

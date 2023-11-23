@@ -1,5 +1,4 @@
 <script lang="ts">
-	// @ts-nocheck
 	import { enhance } from '$app/forms';
 	import type { Icons, TData } from './types';
 

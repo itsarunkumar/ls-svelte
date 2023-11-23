@@ -1,5 +1,4 @@
 <script lang="ts">
-	// @ts-nocheck
 	import { enhance } from '$app/forms';
 	import { Check, Copy, Edit, Share, Share2, Trash } from 'lucide-svelte';
 	import type { PageData } from './$types';

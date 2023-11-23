@@ -15,8 +15,8 @@ dependencies:
     specifier: ^5.5.0
     version: 5.5.0(prisma@5.5.0)
   '@svelte-kit/svelte-toast':
-    specifier: ^0.9.0
-    version: 0.9.0(svelte@4.2.1)
+    specifier: ^0.9.2
+    version: 0.9.2(svelte@4.2.1)
   cloudinary:
     specifier: ^1.41.0
     version: 1.41.0
@@ -597,8 +597,8 @@ packages:
       rollup: 3.29.4
     dev: true
 
-  /@svelte-kit/svelte-toast@0.9.0(svelte@4.2.1):
-    resolution: {integrity: sha512-lnd4GLXLUs9rOcbXcoMN6rzU2ayrbbJsw0vN76dhgGucGsPW7LWEhmC1df+yR2ayGzRqBp4ek2VYdDOZP+tLNA==}
+  /@svelte-kit/svelte-toast@0.9.2(svelte@4.2.1):
+    resolution: {integrity: sha512-l+Nqb68Z8zxSFjbIckvOYeYEPVfA+1iSQM0O1DZkF+TfKvYtdIqjRmouJeIMRZ4tZdfBDBPPMMkw0gz+dwd5Ag==}
     peerDependencies:
       svelte: ^4.0.0
     dependencies:

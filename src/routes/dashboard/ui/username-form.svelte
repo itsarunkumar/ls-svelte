@@ -1,5 +1,4 @@
 <script lang="ts">
-	// @ts-nocheck
 	import { enhance } from '$app/forms';
 	import { writable } from 'svelte/store';
 	import { toaster } from '@svelte-kit/svelte-toast';
